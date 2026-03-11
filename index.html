@@ -31,7 +31,6 @@
       cursor: none;
     }
 
-    /* Custom cursor */
     .cursor {
       position: fixed;
       width: 8px; height: 8px;
@@ -50,11 +49,9 @@
       pointer-events: none;
       z-index: 9998;
       transform: translate(-50%, -50%);
-      transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
+      transition: left 0.15s ease, top 0.15s ease, width 0.3s ease, height 0.3s ease;
     }
-    body:hover .cursor { opacity: 1; }
 
-    /* Noise overlay */
     body::before {
       content: '';
       position: fixed; inset: 0;
@@ -64,7 +61,6 @@
       opacity: 0.4;
     }
 
-    /* Nav */
     nav {
       position: fixed; top: 0; left: 0; right: 0;
       display: flex; justify-content: space-between; align-items: center;
@@ -97,10 +93,8 @@
     }
     .nav-links a:hover { color: var(--accent); }
 
-    /* Sections */
     section { position: relative; z-index: 1; }
 
-    /* Hero */
     #hero {
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: flex-end;
@@ -136,7 +130,7 @@
     .hero-tagline {
       font-size: 1rem;
       color: var(--muted);
-      max-width: 420px;
+      max-width: 480px;
       margin-bottom: 3rem;
       opacity: 0;
       animation: fadeUp 0.9s 0.6s forwards;
@@ -153,16 +147,10 @@
       transition: border-color 0.3s, background 0.3s, color 0.3s;
       opacity: 0;
       animation: fadeUp 0.9s 0.8s forwards;
+      width: fit-content;
     }
-    .hero-cta:hover {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      color: var(--accent);
-    }
-    .hero-cta::after {
-      content: '→';
-      transition: transform 0.2s;
-    }
+    .hero-cta:hover { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+    .hero-cta::after { content: '→'; transition: transform 0.2s; }
     .hero-cta:hover::after { transform: translateX(4px); }
     .hero-scroll {
       position: absolute;
@@ -182,7 +170,6 @@
       background: linear-gradient(to bottom, var(--accent), transparent);
     }
 
-    /* About */
     #about {
       padding: 8rem 4rem;
       display: grid;
@@ -226,24 +213,23 @@
     .skill-item:hover { background: var(--accent-dim); color: var(--text); }
     .skill-item::before { content: '—'; color: var(--accent); font-size: 0.7rem; }
 
-    /* Experience */
     #experience {
       padding: 8rem 4rem;
       border-top: 1px solid var(--border);
     }
     .exp-header { margin-bottom: 4rem; }
-    .exp-list { display: flex; flex-direction: column; gap: 0; }
+    .exp-list { display: flex; flex-direction: column; }
     .exp-item {
       display: grid;
-      grid-template-columns: 180px 1fr auto;
+      grid-template-columns: 200px 1fr auto;
       gap: 3rem;
       padding: 2.5rem 0;
       border-top: 1px solid var(--border);
-      transition: background 0.2s;
       align-items: start;
     }
     .exp-item:last-child { border-bottom: 1px solid var(--border); }
-    .exp-period { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.2rem; }
+    .exp-period { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.25rem; }
+    .exp-location { font-size: 0.72rem; color: var(--muted); opacity: 0.6; margin-top: 0.3rem; }
     .exp-company {
       font-family: var(--font-display);
       font-size: 1.4rem;
@@ -251,16 +237,16 @@
       margin-bottom: 0.3rem;
     }
     .exp-role { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.8rem; letter-spacing: 0.05em; }
-    .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-width: 520px; }
-    .exp-arrow {
-      font-size: 1.2rem;
-      color: var(--border);
-      transition: color 0.2s, transform 0.2s;
-      padding-top: 0.3rem;
-    }
+    .exp-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; max-width: 540px; }
+    .exp-arrow { font-size: 1.2rem; color: var(--border); transition: color 0.2s, transform 0.2s; padding-top: 0.3rem; }
     .exp-item:hover .exp-arrow { color: var(--accent); transform: translateX(4px); }
 
-    /* Projects */
+    /* Education section */
+    #education {
+      padding: 8rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+
     #projects {
       padding: 8rem 4rem;
       border-top: 1px solid var(--border);
@@ -285,50 +271,45 @@
     }
     .project-card::before {
       content: '';
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: var(--accent-dim);
       opacity: 0;
       transition: opacity 0.3s;
     }
     .project-card:hover { background: #16161a; }
     .project-card:hover::before { opacity: 1; }
-    .project-num {
-      font-size: 0.7rem;
-      color: var(--accent);
-      letter-spacing: 0.2em;
-      margin-bottom: 2rem;
-      font-family: var(--font-body);
-    }
-    .project-title {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 400;
-      margin-bottom: 0.8rem;
-      line-height: 1.2;
-    }
+    .project-num { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.2em; margin-bottom: 2rem; }
+    .project-title { font-family: var(--font-display); font-size: 1.6rem; font-weight: 400; margin-bottom: 0.8rem; line-height: 1.2; }
     .project-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
     .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .tag {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.25rem 0.7rem;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .tag { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 0.25rem 0.7rem; transition: border-color 0.2s, color 0.2s; }
     .project-card:hover .tag { border-color: var(--accent); color: var(--accent); }
-    .project-link {
-      position: absolute;
-      top: 2.5rem; right: 2.5rem;
-      font-size: 1.2rem;
-      color: var(--border);
-      transition: color 0.2s;
-    }
+    .project-link { position: absolute; top: 2.5rem; right: 2.5rem; font-size: 1.2rem; color: var(--border); transition: color 0.2s; }
     .project-card:hover .project-link { color: var(--accent); }
 
-    /* Contact */
+    /* Awards */
+    #awards {
+      padding: 8rem 4rem;
+      border-top: 1px solid var(--border);
+    }
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 4rem;
+    }
+    .award-item {
+      background: var(--surface);
+      padding: 2rem 2.5rem;
+      transition: background 0.2s;
+    }
+    .award-item:hover { background: #16161a; }
+    .award-year { font-size: 0.7rem; color: var(--accent); letter-spacing: 0.15em; margin-bottom: 0.6rem; }
+    .award-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 0.4rem; }
+    .award-org { font-size: 0.82rem; color: var(--muted); }
+
     #contact {
       padding: 8rem 4rem;
       border-top: 1px solid var(--border);
@@ -337,12 +318,7 @@
       gap: 6rem;
       align-items: center;
     }
-    .contact-big {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.1;
-    }
+    .contact-big { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300; line-height: 1.1; }
     .contact-big em { color: var(--accent); font-style: italic; }
     .contact-links { display: flex; flex-direction: column; gap: 1.5rem; }
     .contact-link {
@@ -355,14 +331,9 @@
       letter-spacing: 0.05em;
       transition: border-color 0.2s, background 0.2s, color 0.2s;
     }
-    .contact-link:hover {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      color: var(--accent);
-    }
+    .contact-link:hover { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
     .contact-link span { font-size: 1rem; }
 
-    /* Footer */
     footer {
       padding: 2rem 4rem;
       border-top: 1px solid var(--border);
@@ -373,34 +344,23 @@
       position: relative; z-index: 1;
     }
 
-    /* Animations */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile */
     @media (max-width: 768px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { display: none; }
       #hero { padding: 0 1.5rem 4rem; }
-      .hero-bg-line { display: none; }
-      .hero-scroll { display: none; }
+      .hero-bg-line, .hero-scroll { display: none; }
       #about, #contact { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
-      #experience, #projects { padding: 5rem 1.5rem; }
+      #experience, #projects, #education, #awards { padding: 5rem 1.5rem; }
       .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
       .exp-arrow { display: none; }
-      .projects-grid { grid-template-columns: 1fr; }
+      .projects-grid, .awards-grid { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; }
     }
   </style>
@@ -410,13 +370,14 @@
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
 
-  <!-- NAV -->
   <nav id="navbar">
-    <a href="#hero" class="nav-logo">YourName</a>
+    <a href="#hero" class="nav-logo">Madhav Sabu</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#awards">Awards</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -424,9 +385,9 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-bg-line"></div>
-    <div class="hero-index">Portfolio — 2025</div>
-    <h1 class="hero-name">Your<br/><span>Name</span></h1>
-    <p class="hero-tagline">A brief, punchy description of what you do and what makes you different. Keep it to two lines.</p>
+    <div class="hero-index">Data Science & Business — Northeastern University</div>
+    <h1 class="hero-name">Madhav<br/><span>Sabu</span></h1>
+    <p class="hero-tagline">Aspiring data scientist and business strategist with a passion for machine learning, marketing analytics, and turning data into real-world impact.</p>
     <a href="#projects" class="hero-cta">View my work</a>
     <div class="hero-scroll">Scroll</div>
   </section>
@@ -435,23 +396,23 @@
   <section id="about">
     <div class="reveal">
       <div class="section-label">01 — About</div>
-      <h2 class="section-title">A little about<br/> who I am</h2>
+      <h2 class="section-title">Who I am</h2>
     </div>
     <div class="reveal">
       <div class="about-text">
-        <p>Write 2–3 sentences about who you are professionally. What's your background, what drives you, and what kind of work do you want to do?</p>
-        <p>Add a personal touch here — a passion, a philosophy, or something that sets you apart from a generic resume. Recruiters remember people, not just qualifications.</p>
-        <p>Mention what you're currently working toward or looking for.</p>
+        <p>I'm a Data Science and Business student at Northeastern University, concentrating in Marketing Analytics. I'm driven by a fascination with using machine learning and data to solve real-world problems — from building sentiment analysers to competitive market reports.</p>
+        <p>Beyond the data, I'm a communicator and a leader. I've acted in award-winning films, led student government, and represented my university as VP of a residential hall. I bring the same energy to every room I walk into.</p>
+        <p>I'm currently seeking internships and co-ops where I can apply my technical and creative skills to meaningful work.</p>
       </div>
       <div class="skills-grid">
-        <div class="skill-item">Skill One</div>
-        <div class="skill-item">Skill Two</div>
-        <div class="skill-item">Skill Three</div>
-        <div class="skill-item">Skill Four</div>
-        <div class="skill-item">Skill Five</div>
-        <div class="skill-item">Skill Six</div>
-        <div class="skill-item">Skill Seven</div>
-        <div class="skill-item">Skill Eight</div>
+        <div class="skill-item">Python & Pandas</div>
+        <div class="skill-item">Machine Learning</div>
+        <div class="skill-item">Data Analytics</div>
+        <div class="skill-item">Marketing Analytics</div>
+        <div class="skill-item">Project Management</div>
+        <div class="skill-item">Public Speaking</div>
+        <div class="skill-item">C# & Game Dev</div>
+        <div class="skill-item">Social Media Strategy</div>
       </div>
     </div>
   </section>
@@ -460,115 +421,225 @@
   <section id="experience">
     <div class="exp-header reveal">
       <div class="section-label">02 — Experience</div>
-      <h2 class="section-title">Where I've<br/>worked</h2>
+      <h2 class="section-title">Where I've<br/>contributed</h2>
     </div>
     <div class="exp-list">
+
       <div class="exp-item reveal">
-        <div class="exp-period">2023 — Present</div>
         <div>
-          <div class="exp-company">Company Name</div>
-          <div class="exp-role">Your Job Title</div>
-          <div class="exp-desc">Describe what you did here in 1–2 sentences. Focus on impact — what did you achieve, build, or improve? Use numbers if you have them.</div>
+          <div class="exp-period">Sep 2025 — Present</div>
+          <div class="exp-location">Boston, MA</div>
+        </div>
+        <div>
+          <div class="exp-company">Northeastern University</div>
+          <div class="exp-role">Vice President, Smith & Kennedy Hall — RSA</div>
+          <div class="exp-desc">Represent Smith & Kennedy in the Northeastern Resident Student Association. Attend weekly strategy meetings, coordinate hall-specific events, and work cross-functionally with a team to build community across the student body.</div>
         </div>
         <div class="exp-arrow">→</div>
       </div>
+
       <div class="exp-item reveal">
-        <div class="exp-period">2021 — 2023</div>
         <div>
-          <div class="exp-company">Previous Company</div>
-          <div class="exp-role">Previous Title</div>
-          <div class="exp-desc">Another role description focused on results and impact. What problems did you solve? What value did you bring?</div>
+          <div class="exp-period">Jun 2024 — Jul 2024</div>
+          <div class="exp-location">Singapore</div>
+        </div>
+        <div>
+          <div class="exp-company">My Creative Factory</div>
+          <div class="exp-role">Intern</div>
+          <div class="exp-desc">Worked across product, client, and content functions at a bespoke music startup. Managed client briefs, pitched creative concepts, produced social media content, and conducted competitive industry analysis.</div>
         </div>
         <div class="exp-arrow">→</div>
       </div>
+
       <div class="exp-item reveal">
-        <div class="exp-period">2019 — 2021</div>
         <div>
-          <div class="exp-company">Earlier Company</div>
-          <div class="exp-role">Earlier Title</div>
-          <div class="exp-desc">Where you started, or an internship. Even early-career experience can shine when framed around what you learned and contributed.</div>
+          <div class="exp-period">Aug 2022 — Jun 2023</div>
+          <div class="exp-location">Singapore</div>
+        </div>
+        <div>
+          <div class="exp-company">Overseas Family School</div>
+          <div class="exp-role">Student Government — Social Media & Events</div>
+          <div class="exp-desc">Led social media advertising for school-wide events including Christmas and Diwali celebrations. Managed logistics, coordinated setup, and translated ideas into real experiences — developing strong leadership and execution skills.</div>
         </div>
         <div class="exp-arrow">→</div>
       </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-period">Oct 2022 — Jan 2023</div>
+          <div class="exp-location">Singapore</div>
+        </div>
+        <div>
+          <div class="exp-company">Short Film: Whispers</div>
+          <div class="exp-role">Lead Actor</div>
+          <div class="exp-desc">Played a main lead in an award-winning short film raising awareness about mental health and suicide. The film won the Critic's Youth Award and was featured by ChannelNewsAsia. Worked alongside a diverse group of artists and storytellers.</div>
+        </div>
+        <div class="exp-arrow">→</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="exp-header reveal">
+      <div class="section-label">03 — Education</div>
+      <h2 class="section-title">Where I've<br/>studied</h2>
+    </div>
+    <div class="exp-list">
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-period">Aug 2025 — Present</div>
+          <div class="exp-location">Boston, MA</div>
+        </div>
+        <div>
+          <div class="exp-company">Northeastern University</div>
+          <div class="exp-role">B.S. Data Science & Business — Concentration in Marketing Analytics</div>
+          <div class="exp-desc">Studying the intersection of data science, business strategy, and marketing. Building skills in machine learning, statistical analysis, and data-driven decision making.</div>
+        </div>
+        <div class="exp-arrow">→</div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-period">Sep 2023 — Sep 2025</div>
+          <div class="exp-location">Singapore</div>
+        </div>
+        <div>
+          <div class="exp-company">United World College</div>
+          <div class="exp-role">IB Diploma & High School Diploma</div>
+          <div class="exp-desc">Graduated with the IB Diploma, taking HL Physics, Biology, and Economics. Captained the badminton team, and served as Technical Officer for the Special Olympics — coordinating athletes with special needs and managing event logistics.</div>
+        </div>
+        <div class="exp-arrow">→</div>
+      </div>
+
+      <div class="exp-item reveal">
+        <div>
+          <div class="exp-period">Jun 2023 — Jul 2023</div>
+          <div class="exp-location">New York, NY</div>
+        </div>
+        <div>
+          <div class="exp-company">Columbia University</div>
+          <div class="exp-role">Summer Course — Big Data, Machine Learning & Real World Applications</div>
+          <div class="exp-desc">Learned to build ML models using Python and Pandas on Jupyter Notebook. Final project: a sentiment analyser trained on IMDB data capable of classifying text as positive or negative with high accuracy.</div>
+        </div>
+        <div class="exp-arrow">→</div>
+      </div>
+
     </div>
   </section>
 
   <!-- PROJECTS -->
   <section id="projects">
     <div class="projects-header reveal">
-      <div class="section-label">03 — Projects</div>
-      <h2 class="section-title">Things I've<br/>built & done</h2>
+      <div class="section-label">04 — Projects</div>
+      <h2 class="section-title">Things I've<br/>built</h2>
     </div>
     <div class="projects-grid">
+
       <a href="#" class="project-card reveal">
         <div class="project-num">001</div>
         <div class="project-link">↗</div>
-        <div class="project-title">Project Name</div>
-        <div class="project-desc">A concise description of what this project is, what problem it solves, and what your role was in building it.</div>
+        <div class="project-title">Sentiment Analyser</div>
+        <div class="project-desc">Built a machine learning model that classifies text as positive or negative with high accuracy. Trained on IMDB movie review data using Python, Pandas, and Jupyter Notebook. Final project for Columbia University's Data Science summer program.</div>
         <div class="project-tags">
-          <span class="tag">Tag One</span>
-          <span class="tag">Tag Two</span>
-          <span class="tag">Tag Three</span>
+          <span class="tag">Python</span>
+          <span class="tag">ML</span>
+          <span class="tag">NLP</span>
+          <span class="tag">Pandas</span>
         </div>
       </a>
+
       <a href="#" class="project-card reveal">
         <div class="project-num">002</div>
         <div class="project-link">↗</div>
-        <div class="project-title">Another Project</div>
-        <div class="project-desc">Keep descriptions punchy. Lead with the outcome or impact, then briefly explain what it is and how you built it.</div>
+        <div class="project-title">Plastic Pollution Game</div>
+        <div class="project-desc">Independently designed and built a full 3D game raising awareness about plastic pollution using C# and Unity. Completed as part of a 30.5-hour Udemy course, then presented at a public exhibition.</div>
         <div class="project-tags">
-          <span class="tag">Design</span>
-          <span class="tag">Research</span>
+          <span class="tag">C#</span>
+          <span class="tag">Unity</span>
+          <span class="tag">Game Dev</span>
         </div>
       </a>
+
       <a href="#" class="project-card reveal">
         <div class="project-num">003</div>
         <div class="project-link">↗</div>
-        <div class="project-title">Third Project</div>
-        <div class="project-desc">Even personal or academic projects count. Show initiative, curiosity, and a willingness to create things outside of work.</div>
+        <div class="project-title">More coming soon</div>
+        <div class="project-desc">Currently studying at Northeastern — new data science and business projects on the way. Check back soon.</div>
         <div class="project-tags">
-          <span class="tag">Strategy</span>
-          <span class="tag">Data</span>
-          <span class="tag">Comms</span>
+          <span class="tag">Data Science</span>
+          <span class="tag">Analytics</span>
         </div>
       </a>
+
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <div class="reveal">
+      <div class="section-label">05 — Awards & Recognition</div>
+      <h2 class="section-title">Milestones &<br/>achievements</h2>
+    </div>
+    <div class="awards-grid reveal">
+      <div class="award-item">
+        <div class="award-year">2022 — 2023</div>
+        <div class="award-title">Critic's Youth Award</div>
+        <div class="award-org">Short Film "Whispers" — Featured by ChannelNewsAsia</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2023</div>
+        <div class="award-title">Award at SIMUN</div>
+        <div class="award-org">Singapore International Model United Nations</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2022 — 2023</div>
+        <div class="award-title">Certificate of Excellence for Theatre</div>
+        <div class="award-org">Lead Role — A Midsummer Night's Dream, Overseas Family School</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2022</div>
+        <div class="award-title">C# & 3D Game Development Certificate</div>
+        <div class="award-org">Udemy — Complete C# Unity Game Developer 3D</div>
+      </div>
+      <div class="award-item">
+        <div class="award-year">2022 — 2023</div>
+        <div class="award-title">Academic Merit Certificate</div>
+        <div class="award-org">Science, Drama & Literature — Overseas Family School</div>
+      </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact">
     <div class="reveal">
-      <div class="section-label">04 — Contact</div>
-      <div class="contact-big">Let's work <em>together.</em></div>
+      <div class="section-label">06 — Contact</div>
+      <div class="contact-big">Let's connect<br/>& build something <em>great.</em></div>
     </div>
     <div class="contact-links reveal">
-      <a href="mailto:you@email.com" class="contact-link">
+      <a href="mailto:sabu.m@northeastern.edu" class="contact-link">
         Email me
         <span>↗</span>
       </a>
-      <a href="https://linkedin.com/in/yourprofile" target="_blank" class="contact-link">
+      <a href="https://linkedin.com/in/madhav-sabu" target="_blank" class="contact-link">
         LinkedIn
         <span>↗</span>
       </a>
-      <a href="https://github.com/yourhandle" target="_blank" class="contact-link">
-        GitHub
-        <span>↗</span>
-      </a>
-      <a href="resume.pdf" target="_blank" class="contact-link">
+      <a href="Resume.pdf" target="_blank" class="contact-link">
         Download Resume (PDF)
         <span>↓</span>
       </a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    <span>© 2025 Your Name</span>
-    <span>Designed & built by you</span>
+    <span>© 2025 Madhav Sabu</span>
+    <span>Boston, MA — Open to opportunities</span>
   </footer>
 
   <script>
-    // Custom cursor
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursorRing');
     let mx = 0, my = 0, rx = 0, ry = 0;
@@ -581,29 +652,17 @@
     }
     animateCursor();
     document.querySelectorAll('a, button').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cursor.style.width = '14px'; cursor.style.height = '14px';
-        ring.style.width = '50px'; ring.style.height = '50px';
-      });
-      el.addEventListener('mouseleave', () => {
-        cursor.style.width = '8px'; cursor.style.height = '8px';
-        ring.style.width = '32px'; ring.style.height = '32px';
-      });
+      el.addEventListener('mouseenter', () => { cursor.style.width = '14px'; cursor.style.height = '14px'; ring.style.width = '50px'; ring.style.height = '50px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '8px'; cursor.style.height = '8px'; ring.style.width = '32px'; ring.style.height = '32px'; });
     });
 
-    // Nav on scroll
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
 
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        }
+        if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
       });
     }, { threshold: 0.1 });
     reveals.forEach(el => observer.observe(el));
